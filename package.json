@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "Typescript types for common Strong Platform data",
   "main": "src/common/types.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Strong-Platform/types.git"
@@ -15,5 +12,12 @@
   "bugs": {
     "url": "https://github.com/Strong-Platform/types/issues"
   },
-  "homepage": "https://github.com/Strong-Platform/types#readme"
+  "homepage": "https://github.com/Strong-Platform/types#readme",
+  "dependencies": {
+    "tslint": "^5.13.0",
+    "typescript": "^3.3.3333"
+  },
+  "scripts": {
+    "lint": "tslint './src/**/*.ts*' --format stylish --force"
+  }
 }
