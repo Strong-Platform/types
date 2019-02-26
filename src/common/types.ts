@@ -1,6 +1,6 @@
 type Status = "ok" | "error";
 
-type Event =
+type EventType =
   | "PAGE_VIEW"
   | "PRODUCT_DETAIL_VIEW"
   | "PRODUCT_ADD_TO_CART"
@@ -32,9 +32,68 @@ type Event =
   | "CHECKOUT_COUPON_REJECTED"
   | "ACCOUNT_LOGIN_STATUS";
 
+export interface ApiSession {
+  userId: number;
+  email: string;
+}
+
+export interface Session {
+  id: string;
+  jti?: string;
+  iat?: number;
+  exp?: number;
+}
+
+export interface Customer {
+  id: number;
+  email: string;
+  password?: string | null;
+  first_name: string;
+  last_name: string;
+  created: Date;
+  deleted: Date | null;
+  created_by: number;
+  last_referring_url: string | null;
+  last_referring_url_date: Date | null;
+  last_affiliate: string | null;
+  last_affiliate_date: Date | null;
+  last_utm_source: string | null;
+  last_utm_source_date: Date | null;
+  last_utm_medium: string | null;
+  last_utm_medium_date: Date | null;
+  last_utm_term: string | null;
+  last_utm_term_date: Date | null;
+  last_utm_content: string | null;
+  last_utm_content_date: Date | null;
+  last_utm_campaign: string | null;
+  last_utm_campaign_date: Date | null;
+}
+
+export interface CustomerSession {
+  id: string;
+  jti?: string;
+  iat?: number;
+  exp?: number;
+  customer: Customer;
+}
+
+export interface Event {
+  name: string;
+  session_id: string | null;
+  customer_id: number | null;
+  order_id: number | null;
+  subscription_id: number | null;
+  product_id: number | null;
+  product_variant_id: number | null;
+  status: Status;
+  error_message: string | null;
+  context: Object | null;
+  save: Boolean;
+}
+
 export interface CustomerActivity {
   session_id: string;
-  activity_type: Event;
+  activity_type: EventType;
   customer_id: number | null;
   order_id: number | null;
   subscription_id: number | null;
