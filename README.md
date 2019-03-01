@@ -1,24 +1,24 @@
 # Typescript Types for Strong Platform
 
-- ✔ ApiSession
-- ✔ CartCoupon
-- ✔ CartItem, CartItemExpanded
-- ✔ CartCoupon
-- ✔ Charge
-- ✔ Coupon
-- ✔ Customer
-- ✔ CustomerActivity
-- ✔ CustomerPaymentAccount
-- ✔ CustomerSession
-- ✔ Event
-- ✔ Image, Thumbnail
-- ✔ Order
-- Product
+- ApiSession
+- CartCoupon
+- CartItem, CartItemExpanded
+- CartCoupon
+- Charge
+- Coupon
+- Customer
+- CustomerActivity
+- CustomerPaymentAccount
+- CustomerSession
+- Event
+- Image, Thumbnail
+- Order
+- Product, ProductExpanded
 - ProductSubscriptionPlan
 - ProductVariant
-- ✔ Session
+- Session
 - Shipment
 - ShippingAddress
 - ShippingFlaterateRule
 - ShippingOrigin
-- Subscription
+- Subscription, SubscriptionExpanded

@@ -9,6 +9,17 @@ type OrderStatus =
   | "on-hold"
   | "terminated";
 
+type SubscriptionStatus =
+  | "pending"
+  | "active"
+  | "on-hold"
+  | "completed"
+  | "cancelled"
+  | "expired"
+  | "processing"
+  | "paused"
+  | "terminated";
+
 type EventType =
   | "PAGE_VIEW"
   | "PRODUCT_DETAIL_VIEW"
@@ -282,4 +293,168 @@ export interface Order {
   payment_token: string | null;
   payment_description: string | null;
   charge_error_message: string | null;
+}
+
+export interface Product {
+  id?: number;
+  name: string;
+  slug: string;
+  description: string | null;
+  images: Array<Image>;
+  shipping_origin_id: number;
+  shipping_calculation_type: "flatrate" | "calculated" | "none";
+  shipping_calculation_flat_rate_rule_id: number;
+  created?: Date;
+  deleted?: Date | null;
+  created_by?: number | null;
+}
+
+export interface ProductExpanded extends Product {
+  variants: Array<ProductVariant>;
+  subscriptionPlans: Array<ProductSubscriptionPlan>;
+}
+
+export interface ProductSubscriptionPlan {
+  id?: number;
+  product_id: number;
+  description: string;
+  recurring_payment_p: Boolean;
+  recurring_payment_unit: "month" | "week";
+  recurring_payment_interval: number;
+  price_per: number;
+  shipping_price_per: number;
+  recurring_shipping_unit: "month" | "week";
+  recurring_shipping_interval: number;
+  note_1: string | null;
+  note_2: string | null;
+  note_3: string | null;
+  note_4: string | null;
+  note_5: string | null;
+  default_p: Boolean;
+  shipment_count_max: number;
+  created?: Date;
+  deleted?: Date | null;
+  created_by?: number | null;
+}
+
+export interface ProductVariant {
+  id?: number;
+  sku: string;
+  description: string;
+  size: string | null;
+  color: string | null;
+  style: string | null;
+  images: Array<Image>;
+  product_id: number;
+  price: number;
+  price_compare: number;
+  created?: Date;
+  deleted?: Date | null;
+  created_by?: number | null;
+}
+
+export interface Shipment {
+  id?: number;
+  external_shipment_id: string | null;
+  customer_id: number;
+  order_id: number;
+  subscription_id: number;
+  tracking_number: string | null;
+  carrier: string | null;
+  carrier_service: string | null;
+  shipment_cost: number;
+  created?: Date;
+  deleted?: Date | null;
+  created_by?: number;
+  status:
+    | "awaiting-shipment"
+    | "label-ready"
+    | "label-printed"
+    | "cancelled"
+    | "drop-shipped"
+    | "label-pending"
+    | "completed";
+}
+
+export interface ShippingAddress {
+  id?: number;
+  first_name: string;
+  last_name: string;
+  company: string | null;
+  address_1: string;
+  address_2: string | null;
+  city: string;
+  state: string;
+  postal: string;
+  country: string;
+  created?: Date;
+  deleted?: Date | null;
+  created_by?: number;
+}
+
+export interface ShippingFlaterateRule {
+  id?: number;
+  name: string;
+  scope: "individual" | "all";
+  rates_by_country: object;
+  quantity_multiplier: number;
+  created?: Date;
+  deleted?: Date | null;
+  created_by?: number;
+}
+
+export interface ShippingOrigin {
+  id?: number;
+  name: string;
+  address_1: string;
+  address_2: string | null;
+  address_city: string;
+  address_state: string;
+  address_postal: string;
+  address_country: string;
+  created?: Date;
+  deleted?: Date | null;
+  created_by?: number;
+}
+
+export interface Subscription {
+  id?: number;
+  customer_id: number;
+  order_id: number;
+  payment_account_id: number | null;
+  plan_id: number;
+  status: SubscriptionStatus;
+  next_charge_date: Date | null;
+  product_variant_id: number;
+  shipment_count: number;
+  product_id: number;
+  recurring_payment: Boolean;
+  recurring_payment_unit: "month" | "week";
+  recurring_payment_interval: number;
+  recurring_payment_day: number | null;
+  next_charge_amount: number;
+  next_charge_shipping_amount: number;
+  next_charge_subtotal_amount: number;
+  next_charge_tax_amount: number;
+  recurring_shipping_unit: "month" | "week";
+  recurring_shipping_interval: number;
+  recurring_shipping_day: number | null;
+  next_shipping_date: Date | null;
+  shipment_count_max: number;
+  cancelled_timestamp: Date | null;
+  cancelled_reason: string | null;
+  last_charge_attempt_timestamp: Date | null;
+  completed_timestamp: Date | null;
+  paused_timestamp: Date | null;
+  onhold_timestamp: Date | null;
+  created?: Date;
+  deleted?: Date | null;
+  created_by?: number | null;
+}
+
+export interface SubscriptionExpanded extends Subscription {
+  product: Product;
+  variant: ProductVariant;
+  plan: ProductSubscriptionPlan;
+  order: Order;
 }
