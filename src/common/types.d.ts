@@ -52,6 +52,30 @@ type EventType =
   | "CHECKOUT_COUPON_REJECTED"
   | "ACCOUNT_LOGIN_STATUS";
 
+export interface User {
+  id: number;
+  email: string;
+  password?: string | null;
+  first_name: string;
+  last_name: string;
+  email_verified: Date | null;
+  created: Date;
+  modified: Date | null;
+}
+
+export interface AuthorizationRole {
+  id: number;
+  name: string;
+  created: Date;
+}
+
+export interface AuthorizationUserRole {
+  id: number;
+  user_id: number;
+  role_id: number;
+  created: Date;
+}
+
 export interface ApiSession {
   userId: number;
   email: string;
