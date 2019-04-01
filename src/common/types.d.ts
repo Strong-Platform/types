@@ -112,6 +112,7 @@ export interface Event {
 }
 
 export interface CustomerActivity {
+  id?: number;
   session_id: string;
   activity_type: EventType;
   customer_id: number | null;
@@ -119,6 +120,7 @@ export interface CustomerActivity {
   subscription_id: number | null;
   product_id: number | null;
   product_variant_id: number | null;
+  user_id: number | null;
   status: Status;
   error_message: string | null;
   path: string | null;
