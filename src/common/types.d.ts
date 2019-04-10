@@ -144,7 +144,7 @@ export interface CustomerActivity {
   subscription_id: number | null;
   product_id: number | null;
   product_variant_id: number | null;
-  user_id: number | null;
+  created_by: number | null;
   status: Status;
   error_message: string | null;
   path: string | null;
