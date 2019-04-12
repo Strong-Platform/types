@@ -327,9 +327,9 @@ export interface Product {
   slug: string;
   description: string | null;
   images: Array<Image>;
-  shipping_origin_id: number;
+  shipping_origin_id: number | null;
   shipping_calculation_type: "flatrate" | "calculated" | "none";
-  shipping_calculation_flat_rate_rule_id: number;
+  shipping_calculation_flat_rate_rule_id: number | null;
   created?: Date;
   deleted?: Date | null;
   created_by?: number | null;
@@ -366,14 +366,14 @@ export interface ProductSubscriptionPlan {
 export interface ProductVariant {
   id?: number;
   sku: string;
-  description: string;
+  description: string | null;
   size: string | null;
   color: string | null;
   style: string | null;
   images: Array<Image>;
   product_id: number;
-  price: number;
-  price_compare: number;
+  price: number | null;
+  price_compare: number | null;
   created?: Date;
   deleted?: Date | null;
   created_by?: number | null;

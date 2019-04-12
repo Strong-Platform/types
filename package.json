@@ -1,6 +1,6 @@
 {
   "name": "@strong-platform/types",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Typescript types for common Strong Platform data",
   "main": "src/common/types.d.ts",
   "repository": {
